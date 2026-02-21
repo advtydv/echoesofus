@@ -1,0 +1,8 @@
+{
+  "lowResourceBase": 54,
+  "lowResourceSlope": 0.28,
+  "lowResourceCap": 82,
+  "highResourceBase": 92,
+  "highResourceSlope": 0.05,
+  "highResourceCap": 96
+}

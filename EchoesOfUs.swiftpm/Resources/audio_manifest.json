@@ -1,0 +1,390 @@
+{
+  "phraseClips": [
+    {
+      "key": "phrase:nv_1",
+      "fileName": "Audio/Phrases/nv_1.m4a",
+      "kind": "native",
+      "durationSeconds": 2.55
+    },
+    {
+      "key": "phrase:nv_2",
+      "fileName": "Audio/Phrases/nv_2.m4a",
+      "kind": "native",
+      "durationSeconds": 2.55
+    },
+    {
+      "key": "phrase:nv_3",
+      "fileName": "Audio/Phrases/nv_3.m4a",
+      "kind": "native",
+      "durationSeconds": 2.55
+    },
+    {
+      "key": "phrase:nv_4",
+      "fileName": "Audio/Phrases/nv_4.m4a",
+      "kind": "native",
+      "durationSeconds": 1.9
+    },
+    {
+      "key": "phrase:nv_5",
+      "fileName": "Audio/Phrases/nv_5.m4a",
+      "kind": "native",
+      "durationSeconds": 4.5
+    },
+    {
+      "key": "phrase:nv_6",
+      "fileName": "Audio/Phrases/nv_6.m4a",
+      "kind": "native",
+      "durationSeconds": 3.85
+    },
+    {
+      "key": "phrase:nv_7",
+      "fileName": "Audio/Phrases/nv_7.m4a",
+      "kind": "native",
+      "durationSeconds": 3.85
+    },
+    {
+      "key": "phrase:nv_8",
+      "fileName": "Audio/Phrases/nv_8.m4a",
+      "kind": "native",
+      "durationSeconds": 2.55
+    },
+    {
+      "key": "phrase:nv_9",
+      "fileName": "Audio/Phrases/nv_9.m4a",
+      "kind": "native",
+      "durationSeconds": 2.55
+    },
+    {
+      "key": "phrase:nv_10",
+      "fileName": "Audio/Phrases/nv_10.m4a",
+      "kind": "native",
+      "durationSeconds": 1.9
+    },
+    {
+      "key": "phrase:nv_11",
+      "fileName": "Audio/Phrases/nv_11.m4a",
+      "kind": "native",
+      "durationSeconds": 5.15
+    },
+    {
+      "key": "phrase:nv_12",
+      "fileName": "Audio/Phrases/nv_12.m4a",
+      "kind": "native",
+      "durationSeconds": 4.5
+    },
+    {
+      "key": "phrase:qu_1",
+      "fileName": "Audio/Phrases/qu_1.m4a",
+      "kind": "native",
+      "durationSeconds": 3.2
+    },
+    {
+      "key": "phrase:qu_2",
+      "fileName": "Audio/Phrases/qu_2.m4a",
+      "kind": "native",
+      "durationSeconds": 2.55
+    },
+    {
+      "key": "phrase:qu_3",
+      "fileName": "Audio/Phrases/qu_3.m4a",
+      "kind": "native",
+      "durationSeconds": 4.5
+    },
+    {
+      "key": "phrase:qu_4",
+      "fileName": "Audio/Phrases/qu_4.m4a",
+      "kind": "native",
+      "durationSeconds": 1.9
+    },
+    {
+      "key": "phrase:qu_5",
+      "fileName": "Audio/Phrases/qu_5.m4a",
+      "kind": "native",
+      "durationSeconds": 3.2
+    },
+    {
+      "key": "phrase:qu_6",
+      "fileName": "Audio/Phrases/qu_6.m4a",
+      "kind": "native",
+      "durationSeconds": 4.5
+    },
+    {
+      "key": "phrase:qu_7",
+      "fileName": "Audio/Phrases/qu_7.m4a",
+      "kind": "native",
+      "durationSeconds": 3.85
+    },
+    {
+      "key": "phrase:qu_8",
+      "fileName": "Audio/Phrases/qu_8.m4a",
+      "kind": "native",
+      "durationSeconds": 1.9
+    },
+    {
+      "key": "phrase:qu_9",
+      "fileName": "Audio/Phrases/qu_9.m4a",
+      "kind": "native",
+      "durationSeconds": 3.2
+    },
+    {
+      "key": "phrase:qu_10",
+      "fileName": "Audio/Phrases/qu_10.m4a",
+      "kind": "native",
+      "durationSeconds": 3.2
+    },
+    {
+      "key": "phrase:qu_11",
+      "fileName": "Audio/Phrases/qu_11.m4a",
+      "kind": "native",
+      "durationSeconds": 4.5
+    },
+    {
+      "key": "phrase:qu_12",
+      "fileName": "Audio/Phrases/qu_12.m4a",
+      "kind": "native",
+      "durationSeconds": 3.85
+    }
+  ],
+  "missionClips": [
+    {
+      "key": "mission:mission_navajo_welcome:prompt",
+      "fileName": "Audio/Missions/mission_navajo_welcome_prompt.m4a",
+      "kind": "native",
+      "durationSeconds": 3.0
+    },
+    {
+      "key": "mission:mission_navajo_welcome:option:0",
+      "fileName": "Audio/Missions/mission_navajo_welcome_option_0.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    },
+    {
+      "key": "mission:mission_navajo_welcome:option:1",
+      "fileName": "Audio/Missions/mission_navajo_welcome_option_1.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    },
+    {
+      "key": "mission:mission_navajo_welcome:option:2",
+      "fileName": "Audio/Missions/mission_navajo_welcome_option_2.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    },
+    {
+      "key": "mission:mission_navajo_welcome:option:3",
+      "fileName": "Audio/Missions/mission_navajo_welcome_option_3.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    },
+    {
+      "key": "mission:mission_navajo_gratitude:prompt",
+      "fileName": "Audio/Missions/mission_navajo_gratitude_prompt.m4a",
+      "kind": "native",
+      "durationSeconds": 3.0
+    },
+    {
+      "key": "mission:mission_navajo_gratitude:option:0",
+      "fileName": "Audio/Missions/mission_navajo_gratitude_option_0.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    },
+    {
+      "key": "mission:mission_navajo_gratitude:option:1",
+      "fileName": "Audio/Missions/mission_navajo_gratitude_option_1.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    },
+    {
+      "key": "mission:mission_navajo_gratitude:option:2",
+      "fileName": "Audio/Missions/mission_navajo_gratitude_option_2.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    },
+    {
+      "key": "mission:mission_navajo_gratitude:option:3",
+      "fileName": "Audio/Missions/mission_navajo_gratitude_option_3.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    },
+    {
+      "key": "mission:mission_navajo_intro:prompt",
+      "fileName": "Audio/Missions/mission_navajo_intro_prompt.m4a",
+      "kind": "native",
+      "durationSeconds": 3.0
+    },
+    {
+      "key": "mission:mission_navajo_intro:option:0",
+      "fileName": "Audio/Missions/mission_navajo_intro_option_0.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    },
+    {
+      "key": "mission:mission_navajo_intro:option:1",
+      "fileName": "Audio/Missions/mission_navajo_intro_option_1.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    },
+    {
+      "key": "mission:mission_navajo_intro:option:2",
+      "fileName": "Audio/Missions/mission_navajo_intro_option_2.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    },
+    {
+      "key": "mission:mission_navajo_intro:option:3",
+      "fileName": "Audio/Missions/mission_navajo_intro_option_3.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    },
+    {
+      "key": "mission:mission_navajo_closing:prompt",
+      "fileName": "Audio/Missions/mission_navajo_closing_prompt.m4a",
+      "kind": "native",
+      "durationSeconds": 3.0
+    },
+    {
+      "key": "mission:mission_navajo_closing:option:0",
+      "fileName": "Audio/Missions/mission_navajo_closing_option_0.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    },
+    {
+      "key": "mission:mission_navajo_closing:option:1",
+      "fileName": "Audio/Missions/mission_navajo_closing_option_1.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    },
+    {
+      "key": "mission:mission_navajo_closing:option:2",
+      "fileName": "Audio/Missions/mission_navajo_closing_option_2.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    },
+    {
+      "key": "mission:mission_navajo_closing:option:3",
+      "fileName": "Audio/Missions/mission_navajo_closing_option_3.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    },
+    {
+      "key": "mission:mission_quechua_welcome:prompt",
+      "fileName": "Audio/Missions/mission_quechua_welcome_prompt.m4a",
+      "kind": "native",
+      "durationSeconds": 3.0
+    },
+    {
+      "key": "mission:mission_quechua_welcome:option:0",
+      "fileName": "Audio/Missions/mission_quechua_welcome_option_0.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    },
+    {
+      "key": "mission:mission_quechua_welcome:option:1",
+      "fileName": "Audio/Missions/mission_quechua_welcome_option_1.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    },
+    {
+      "key": "mission:mission_quechua_welcome:option:2",
+      "fileName": "Audio/Missions/mission_quechua_welcome_option_2.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    },
+    {
+      "key": "mission:mission_quechua_welcome:option:3",
+      "fileName": "Audio/Missions/mission_quechua_welcome_option_3.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    },
+    {
+      "key": "mission:mission_quechua_help:prompt",
+      "fileName": "Audio/Missions/mission_quechua_help_prompt.m4a",
+      "kind": "native",
+      "durationSeconds": 3.0
+    },
+    {
+      "key": "mission:mission_quechua_help:option:0",
+      "fileName": "Audio/Missions/mission_quechua_help_option_0.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    },
+    {
+      "key": "mission:mission_quechua_help:option:1",
+      "fileName": "Audio/Missions/mission_quechua_help_option_1.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    },
+    {
+      "key": "mission:mission_quechua_help:option:2",
+      "fileName": "Audio/Missions/mission_quechua_help_option_2.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    },
+    {
+      "key": "mission:mission_quechua_help:option:3",
+      "fileName": "Audio/Missions/mission_quechua_help_option_3.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    },
+    {
+      "key": "mission:mission_quechua_name:prompt",
+      "fileName": "Audio/Missions/mission_quechua_name_prompt.m4a",
+      "kind": "native",
+      "durationSeconds": 3.0
+    },
+    {
+      "key": "mission:mission_quechua_name:option:0",
+      "fileName": "Audio/Missions/mission_quechua_name_option_0.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    },
+    {
+      "key": "mission:mission_quechua_name:option:1",
+      "fileName": "Audio/Missions/mission_quechua_name_option_1.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    },
+    {
+      "key": "mission:mission_quechua_name:option:2",
+      "fileName": "Audio/Missions/mission_quechua_name_option_2.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    },
+    {
+      "key": "mission:mission_quechua_name:option:3",
+      "fileName": "Audio/Missions/mission_quechua_name_option_3.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    },
+    {
+      "key": "mission:mission_quechua_closing:prompt",
+      "fileName": "Audio/Missions/mission_quechua_closing_prompt.m4a",
+      "kind": "native",
+      "durationSeconds": 3.0
+    },
+    {
+      "key": "mission:mission_quechua_closing:option:0",
+      "fileName": "Audio/Missions/mission_quechua_closing_option_0.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    },
+    {
+      "key": "mission:mission_quechua_closing:option:1",
+      "fileName": "Audio/Missions/mission_quechua_closing_option_1.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    },
+    {
+      "key": "mission:mission_quechua_closing:option:2",
+      "fileName": "Audio/Missions/mission_quechua_closing_option_2.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    },
+    {
+      "key": "mission:mission_quechua_closing:option:3",
+      "fileName": "Audio/Missions/mission_quechua_closing_option_3.m4a",
+      "kind": "native",
+      "durationSeconds": 1.8
+    }
+  ]
+}
