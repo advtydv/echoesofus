@@ -101,6 +101,7 @@ struct StageShell<Content: View>: View {
 
     var body: some View {
         let palette = appState.learnerProfile.palette
+        let isLastStep = appState.step == GuidedStep.allCases.last
 
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: 16) {
@@ -127,9 +128,25 @@ struct StageShell<Content: View>: View {
 
                     Spacer()
 
-                    Text("Step \(appState.step.rawValue + 1) of \(GuidedStep.allCases.count)")
-                        .font(.caption.weight(.semibold))
-                        .foregroundStyle(palette.cardSubtext)
+                    if !isLastStep {
+                        Button(action: { appState.advanceStep() }) {
+                            HStack(spacing: 4) {
+                                Text("Skip")
+                                Image(systemName: "forward.fill")
+                                    .font(.caption2)
+                            }
+                            .font(.caption.weight(.semibold))
+                            .foregroundStyle(palette.cardSubtext)
+                            .padding(.vertical, 6)
+                            .padding(.horizontal, 12)
+                            .background(
+                                Capsule(style: .continuous)
+                                    .fill(palette.badgeBackground)
+                            )
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityLabel("Skip this step")
+                    }
                 }
 
                 VStack(alignment: .leading, spacing: 4) {

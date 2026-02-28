@@ -13,58 +13,6 @@
     "hint": "Pick the phrase used to begin conversation with warmth."
   },
   {
-    "id": "mission_navajo_gratitude",
-    "languageID": "navajo",
-    "prompt": "A mentor helps your team debug a project. Which response best expresses thanks?",
-    "options": [
-      "Ahéhee'",
-      "Yá'át'ééh abiní",
-      "Dooda",
-      "Aoo'"
-    ],
-    "correctAnswer": "Ahéhee'",
-    "hint": "Choose the phrase used to express gratitude."
-  },
-  {
-    "id": "mission_navajo_intro",
-    "languageID": "navajo",
-    "prompt": "You are introducing yourself before presenting. Which phrase frame is most appropriate?",
-    "options": [
-      "Shí éí ... yinishyé",
-      "Hágoónee'",
-      "Nizhóní",
-      "Dooda"
-    ],
-    "correctAnswer": "Shí éí ... yinishyé",
-    "hint": "Pick the phrase frame used for saying your name."
-  },
-  {
-    "id": "mission_navajo_closing",
-    "languageID": "navajo",
-    "prompt": "After receiving help, you want to close politely. Which phrase pair fits best?",
-    "options": [
-      "Hágoónee', ahéhee'",
-      "Aoo'",
-      "T'áá shoodí",
-      "Yá'át'ééh"
-    ],
-    "correctAnswer": "Hágoónee', ahéhee'",
-    "hint": "Look for a farewell combined with gratitude."
-  },
-  {
-    "id": "mission_quechua_welcome",
-    "languageID": "quechua",
-    "prompt": "You greet a partner at the start of class. Which phrase best means good day?",
-    "options": [
-      "Allin p'unchay",
-      "Tupananchiskama",
-      "Mana",
-      "Sulpayki"
-    ],
-    "correctAnswer": "Allin p'unchay",
-    "hint": "Choose the daytime greeting phrase."
-  },
-  {
     "id": "mission_quechua_help",
     "languageID": "quechua",
     "prompt": "You need support with an assignment. Which phrase clearly asks for help?",
@@ -78,29 +26,16 @@
     "hint": "Pick the phrase used to request assistance."
   },
   {
-    "id": "mission_quechua_name",
-    "languageID": "quechua",
-    "prompt": "You are meeting someone new in your coding club. Which phrase asks their name?",
+    "id": "mission_navajo_closing",
+    "languageID": "navajo",
+    "prompt": "After receiving help, you want to close politely. Which phrase pair fits best?",
     "options": [
-      "Imataq sutiyki?",
-      "Ñuqaqa ... kani",
-      "Sulpayki",
-      "Allin tuta"
+      "Hágoónee', ahéhee'",
+      "Aoo'",
+      "T'áá shoodí",
+      "Yá'át'ééh"
     ],
-    "correctAnswer": "Imataq sutiyki?",
-    "hint": "Choose the question phrase about identity/name."
-  },
-  {
-    "id": "mission_quechua_closing",
-    "languageID": "quechua",
-    "prompt": "At the end of a workshop, you thank everyone and say goodbye. Which phrase is the closing?",
-    "options": [
-      "Tupananchiskama",
-      "Allin p'unchay",
-      "Ari",
-      "Pampachaway"
-    ],
-    "correctAnswer": "Tupananchiskama",
-    "hint": "Choose the phrase used for goodbye / until next time."
+    "correctAnswer": "Hágoónee', ahéhee'",
+    "hint": "Look for a farewell combined with gratitude."
   }
 ]

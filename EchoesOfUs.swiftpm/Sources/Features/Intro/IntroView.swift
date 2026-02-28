@@ -14,80 +14,107 @@ struct IntroView: View {
     private let fullLine2 = "With it, generations of knowledge disappear."
 
     var body: some View {
+        let hc = appState.learnerProfile.highContrast
+
         GeometryReader { geo in
             ZStack {
-                Color.black
+                (hc ? EchoTheme.strongBackground : EchoTheme.background)
                     .ignoresSafeArea()
-                    .opacity(phase == .waiting ? 0 : 1)
 
                 ambientShapes
                     .opacity(phase.rawValue >= IntroPhase.echoPhrase.rawValue ? 0.6 : 0)
 
-                ScrollView(showsIndicators: false) {
-                    VStack(spacing: 0) {
-                        Spacer(minLength: geo.size.height * 0.15)
-
-                        VStack(alignment: .center, spacing: 24) {
-                            if !line1.isEmpty {
-                                Text(line1)
-                                    .font(.title2.weight(.semibold))
-                                    .foregroundStyle(.white.opacity(0.92))
-                                    .multilineTextAlignment(.center)
-                                    .accessibilityLabel(fullLine1)
+                VStack(spacing: 0) {
+                    HStack {
+                        Spacer()
+                        if !showButton {
+                            Button {
+                                appState.advanceStep()
+                            } label: {
+                                Text("Skip")
+                                    .font(.footnote.weight(.medium))
+                                    .foregroundStyle(hc ? .white.opacity(0.7) : EchoTheme.night.opacity(0.5))
+                                    .padding(.vertical, 6)
+                                    .padding(.horizontal, 14)
+                                    .background(
+                                        Capsule(style: .continuous)
+                                            .fill(hc ? Color.white.opacity(0.12) : Color.white.opacity(0.4))
+                                    )
                             }
-
-                            if !line2.isEmpty {
-                                Text(line2)
-                                    .font(.title3.weight(.medium))
-                                    .foregroundStyle(.white.opacity(0.78))
-                                    .multilineTextAlignment(.center)
-                                    .accessibilityLabel(fullLine2)
-                            }
-
-                            if showEchoPhrase {
-                                VStack(spacing: 12) {
-                                    Text("Yá'át'ééh")
-                                        .font(.system(size: 44, weight: .bold, design: .rounded))
-                                        .foregroundStyle(.white)
-                                        .shadow(color: EchoTheme.clay.opacity(0.6), radius: 20, x: 0, y: 0)
-                                        .scaleEffect(showEchoPhrase ? 1 : 0.7)
-
-                                    if showMeaning {
-                                        Text("\"Hello / It is good\" — Dine Bizaad (Navajo)")
-                                            .font(.subheadline.weight(.medium))
-                                            .foregroundStyle(.white.opacity(0.72))
-                                            .transition(.opacity.combined(with: .offset(y: 8)))
-                                    }
-                                }
-                                .transition(.scale(scale: 0.8).combined(with: .opacity))
-                                .padding(.vertical, 16)
-                            }
-
-                            if showPillars {
-                                VStack(alignment: .leading, spacing: 14) {
-                                    pillarRow(icon: "heart.text.square", text: "Preserve language dignity")
-                                    pillarRow(icon: "cpu", text: "Support equitable AI outcomes")
-                                    pillarRow(icon: "book.pages", text: "Provide inclusive classroom tools")
-                                }
-                                .transition(.opacity.combined(with: .offset(y: 14)))
-                            }
-
-                            if showButton {
-                                Button("Begin the journey") {
-                                    appState.advanceStep()
-                                }
-                                .buttonStyle(PrimaryActionButton(highContrast: appState.learnerProfile.highContrast))
-                                .transition(.opacity.combined(with: .offset(y: 10)))
-                                .padding(.top, 8)
-                            }
+                            .buttonStyle(.plain)
+                            .accessibilityLabel("Skip intro")
                         }
-                        .padding(.horizontal, 24)
-                        .frame(maxWidth: 600)
-                        .readableText(appState.learnerProfile.readingSupport)
-
-                        Spacer(minLength: geo.size.height * 0.12)
                     }
-                    .frame(minHeight: geo.size.height)
+                    .padding(.horizontal, 20)
+                    .padding(.top, 12)
+                    .frame(height: 44)
+
+                    ScrollView(showsIndicators: false) {
+                        VStack(spacing: 0) {
+                            Spacer(minLength: geo.size.height * 0.10)
+
+                            VStack(alignment: .center, spacing: 24) {
+                                if !line1.isEmpty {
+                                    Text(line1)
+                                        .font(.title2.weight(.semibold))
+                                        .foregroundStyle(hc ? .white.opacity(0.92) : EchoTheme.night.opacity(0.88))
+                                        .multilineTextAlignment(.center)
+                                        .accessibilityLabel(fullLine1)
+                                }
+
+                                if !line2.isEmpty {
+                                    Text(line2)
+                                        .font(.title3.weight(.medium))
+                                        .foregroundStyle(hc ? .white.opacity(0.78) : EchoTheme.night.opacity(0.65))
+                                        .multilineTextAlignment(.center)
+                                        .accessibilityLabel(fullLine2)
+                                }
+
+                                if showEchoPhrase {
+                                    VStack(spacing: 12) {
+                                        Text("Yá'át'ééh")
+                                            .font(.system(size: 44, weight: .bold, design: .rounded))
+                                            .foregroundStyle(hc ? .white : EchoTheme.clay)
+                                            .shadow(color: EchoTheme.clay.opacity(0.4), radius: 20, x: 0, y: 0)
+                                            .scaleEffect(showEchoPhrase ? 1 : 0.7)
+
+                                        if showMeaning {
+                                            Text("\"Hello / It is good\" — Diné Bizaad (Navajo)")
+                                                .font(.subheadline.weight(.medium))
+                                                .foregroundStyle(hc ? .white.opacity(0.72) : EchoTheme.night.opacity(0.55))
+                                                .transition(.opacity.combined(with: .offset(y: 8)))
+                                        }
+                                    }
+                                    .transition(.scale(scale: 0.8).combined(with: .opacity))
+                                    .padding(.vertical, 16)
+                                }
+
+                                if showPillars {
+                                    VStack(alignment: .leading, spacing: 14) {
+                                        pillarRow(icon: "heart.text.square", text: "Preserve language dignity")
+                                        pillarRow(icon: "cpu", text: "Support equitable AI outcomes")
+                                        pillarRow(icon: "book.pages", text: "Provide inclusive classroom tools")
+                                    }
+                                    .transition(.opacity.combined(with: .offset(y: 14)))
+                                }
+
+                                if showButton {
+                                    Button("Begin the journey") {
+                                        appState.advanceStep()
+                                    }
+                                    .buttonStyle(PrimaryActionButton(highContrast: hc))
+                                    .transition(.opacity.combined(with: .offset(y: 10)))
+                                    .padding(.top, 8)
+                                }
+                            }
+                            .padding(.horizontal, 24)
+                            .frame(maxWidth: 600)
+                            .readableText(appState.learnerProfile.readingSupport)
+
+                            Spacer(minLength: geo.size.height * 0.12)
+                        }
+                        .frame(minHeight: geo.size.height - 44)
+                    }
                 }
             }
         }
@@ -103,14 +130,15 @@ struct IntroView: View {
     }
 
     private func pillarRow(icon: String, text: String) -> some View {
-        HStack(spacing: 12) {
+        let hc = appState.learnerProfile.highContrast
+        return HStack(spacing: 12) {
             Image(systemName: icon)
                 .font(.title3)
                 .foregroundStyle(EchoTheme.clay)
                 .frame(width: 28)
             Text(text)
                 .font(.subheadline.weight(.medium))
-                .foregroundStyle(.white.opacity(0.88))
+                .foregroundStyle(hc ? .white.opacity(0.88) : EchoTheme.night.opacity(0.75))
         }
         .accessibilityElement(children: .combine)
     }
