@@ -152,11 +152,17 @@ extension View {
         modifier(EchoCardModifier(highContrast: highContrast))
     }
 
+    @ViewBuilder
     func readableText(_ enabled: Bool) -> some View {
         if enabled {
-            return AnyView(self.fontDesign(.rounded).lineSpacing(4))
+            self.fontDesign(.rounded).lineSpacing(4)
+        } else {
+            self
         }
-        return AnyView(self)
+    }
+
+    func staggeredEntrance(index: Int, focusMode: Bool) -> some View {
+        modifier(StaggeredEntrance(index: index, focusMode: focusMode))
     }
 }
 
@@ -427,5 +433,62 @@ struct SyllableRow: View {
             return isActive ? EchoTheme.night : Color.white
         }
         return isActive ? Color.white : EchoTheme.night
+    }
+}
+
+struct StaggeredEntrance: ViewModifier {
+    let index: Int
+    let focusMode: Bool
+    @State private var appeared = false
+
+    func body(content: Content) -> some View {
+        content
+            .opacity(appeared ? 1 : 0)
+            .offset(y: appeared ? 0 : 18)
+            .onAppear {
+                guard !focusMode else {
+                    appeared = true
+                    return
+                }
+                withAnimation(
+                    .spring(response: 0.5, dampingFraction: 0.8)
+                        .delay(Double(index) * 0.08)
+                ) {
+                    appeared = true
+                }
+            }
+    }
+}
+
+struct ScoreReveal: ViewModifier {
+    let targetValue: Double
+    let format: String
+    @State private var displayValue: Double = 0
+
+    init(value: Double, format: String = "%.0f") {
+        self.targetValue = value
+        self.format = format
+    }
+
+    func body(content: Content) -> some View {
+        content.overlay {
+            Text(String(format: format, displayValue))
+        }
+        .onAppear {
+            withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {
+                displayValue = targetValue
+            }
+        }
+        .onChange(of: targetValue) { _, newValue in
+            withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {
+                displayValue = newValue
+            }
+        }
+    }
+}
+
+extension View {
+    func scoreReveal(value: Double, format: String = "%.0f") -> some View {
+        modifier(ScoreReveal(value: value, format: format))
     }
 }

@@ -117,7 +117,7 @@ struct FairnessLabView: View {
 }
 
 private struct ScoreRow: Identifiable {
-    let id = UUID()
+    var id: String { label }
     let label: String
     let score: Double
     let color: Color

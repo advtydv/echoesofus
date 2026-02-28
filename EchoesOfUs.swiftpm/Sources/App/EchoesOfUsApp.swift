@@ -77,6 +77,8 @@ private struct GuidedExperienceView: View {
             MasterySprintView()
         case .mission:
             MissionView()
+        case .conversation:
+            ConversationSimView()
         case .fairness:
             FairnessLabView()
         case .summary:
@@ -193,6 +195,8 @@ struct StageShell<Content: View>: View {
             return "figure.mind.and.body"
         case .mission:
             return "checkmark.message"
+        case .conversation:
+            return "bubble.left.and.bubble.right"
         case .fairness:
             return "chart.bar.xaxis"
         case .summary:
@@ -262,6 +266,7 @@ private struct StageControlButton: View {
                 )
         }
         .buttonStyle(PlainButtonStyle())
+        .accessibilityLabel(title)
     }
 }
 

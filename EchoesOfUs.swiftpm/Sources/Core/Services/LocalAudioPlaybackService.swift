@@ -99,7 +99,9 @@ final class LocalAudioPlaybackService: NSObject, AudioPlaybackServicing, AudioMa
     }
 
     private static func loadManifest() -> AudioManifest {
-        guard let url = manifestURL() else { return .empty }
+        guard let url = BundleResourceFinder.url(forResource: "audio_manifest", withExtension: "json") else {
+            return .empty
+        }
 
         do {
             let data = try Data(contentsOf: url)
@@ -109,27 +111,8 @@ final class LocalAudioPlaybackService: NSObject, AudioPlaybackServicing, AudioMa
         }
     }
 
-    private static func manifestURL() -> URL? {
-        let bundles = [Bundle.main, Bundle(for: AudioBundleLocator.self)] + Bundle.allBundles + Bundle.allFrameworks
-        for bundle in bundles {
-            if let url = bundle.url(forResource: "audio_manifest", withExtension: "json") {
-                return url
-            }
-        }
-        return nil
-    }
-
     private static func resourceURL(for relativePath: String) -> URL? {
-        let bundles = [Bundle.main, Bundle(for: AudioBundleLocator.self)] + Bundle.allBundles + Bundle.allFrameworks
-        for bundle in bundles {
-            if let base = bundle.resourceURL {
-                let candidate = base.appendingPathComponent(relativePath)
-                if FileManager.default.fileExists(atPath: candidate.path) {
-                    return candidate
-                }
-            }
-        }
-        return nil
+        BundleResourceFinder.url(forRelativePath: relativePath)
     }
 }
 
@@ -158,5 +141,3 @@ extension LocalAudioPlaybackService: AVAudioPlayerDelegate, AVSpeechSynthesizerD
         }
     }
 }
-
-private final class AudioBundleLocator {}

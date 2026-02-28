@@ -158,6 +158,34 @@ protocol FairnessConfigRepository {
     func loadFairnessConfig() throws -> FairnessConfig
 }
 
+protocol ConversationRepository {
+    func loadConversations() throws -> [Conversation]
+}
+
+struct Conversation: Codable, Identifiable {
+    let id: String
+    let languageID: String
+    let scenarioTitle: String
+    let scenarioContext: String
+    let characterName: String
+    let characterIcon: String
+    let turns: [ConversationTurn]
+}
+
+struct ConversationTurn: Codable, Identifiable {
+    let id: String
+    let characterLine: String
+    let options: [ConversationOption]
+    let correctOptionID: String
+}
+
+struct ConversationOption: Codable, Identifiable {
+    let id: String
+    let nativeText: String
+    let isCorrect: Bool
+    let characterReaction: String
+}
+
 struct FairnessConfig: Codable {
     let lowResourceBase: Double
     let lowResourceSlope: Double
@@ -182,6 +210,7 @@ enum GuidedStep: Int, CaseIterable, Identifiable {
     case learn
     case mastery
     case mission
+    case conversation
     case fairness
     case summary
 
@@ -197,6 +226,8 @@ enum GuidedStep: Int, CaseIterable, Identifiable {
             return "Mastery Sprint"
         case .mission:
             return "Mission"
+        case .conversation:
+            return "Echo Chamber"
         case .fairness:
             return "AI Fairness Lab"
         case .summary:

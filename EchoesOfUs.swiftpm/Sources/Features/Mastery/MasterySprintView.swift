@@ -62,6 +62,8 @@ struct MasterySprintView: View {
                             )
                         )
                         .disabled(appState.isSprintSubmitted)
+                        .accessibilityLabel("Option: \(option)")
+                        .accessibilityHint(appState.currentSprintSelectedOption == option ? "Selected" : "Tap to select")
                     }
                 }
 
@@ -73,6 +75,8 @@ struct MasterySprintView: View {
                             Label("Play phrase audio", systemImage: "speaker.wave.2.fill")
                         }
                         .buttonStyle(SecondaryActionButton(highContrast: appState.learnerProfile.highContrast))
+                        .accessibilityLabel("Play audio for this phrase")
+                        .accessibilityHint("Plays native clip or helper narration")
 
                         Text("Audio source: \(appState.lastAudioPlaybackLabel)")
                             .font(.footnote)

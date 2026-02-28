@@ -18,6 +18,7 @@ let package = Package(
             name: "Echoes of Us",
             targets: ["AppModule"],
             bundleIdentifier: "com.studentchallenge.echoesofus",
+            teamIdentifier: "C5A4Q7BH32",
             displayVersion: "1.0",
             bundleVersion: "1",
             appIcon: .placeholder(icon: .openBook),

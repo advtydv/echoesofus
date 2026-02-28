@@ -30,6 +30,7 @@ struct ImpactSummaryView: View {
                 metricRow(title: "Adaptive hints used", value: "\(appState.hintsUsed)")
                 metricRow(title: "Mastery sprint score", value: "\(appState.lastSprintScore)/4")
                 metricRow(title: "Mastery confidence shift", value: String(format: "%+.1f%%", appState.masteryDelta * 100))
+                metricRow(title: "Conversation fluency", value: "\(Int((appState.conversationFluencyScore * 100).rounded()))%")
                 metricRow(title: "Low-resource readiness", value: String(format: "%.1f", appState.lowResourceScore))
                 metricRow(title: "Native clips heard", value: "\(appState.audioClipPlayCount)")
                 metricRow(title: "Fallback narration used", value: "\(appState.audioFallbackCount)")

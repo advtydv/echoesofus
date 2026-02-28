@@ -1,0 +1,222 @@
+[
+  {
+    "id": "conv_navajo_elder",
+    "languageID": "navajo",
+    "scenarioTitle": "School Cultural Event",
+    "scenarioContext": "You arrive at a school cultural event. Elder Thomas walks over to your table with a warm smile.",
+    "characterName": "Elder Thomas",
+    "characterIcon": "person.crop.circle.fill",
+    "turns": [
+      {
+        "id": "conv_nv_t1",
+        "characterLine": "An elder approaches you at the cultural event. How do you greet him respectfully?",
+        "options": [
+          {
+            "id": "conv_nv_t1_a",
+            "nativeText": "Yá'át'ééh",
+            "isCorrect": true,
+            "characterReaction": "Elder Thomas nods warmly. \"Yá'át'ééh! It is good to see young people here.\""
+          },
+          {
+            "id": "conv_nv_t1_b",
+            "nativeText": "Hágoónee'",
+            "isCorrect": false,
+            "characterReaction": "Elder Thomas pauses — that phrase is for leaving, not arriving. He smiles patiently and waits for you to try again."
+          },
+          {
+            "id": "conv_nv_t1_c",
+            "nativeText": "Dooda",
+            "isCorrect": false,
+            "characterReaction": "Elder Thomas looks puzzled. A simple \"no\" is not quite the opener he expected. He gives you another chance."
+          }
+        ],
+        "correctOptionID": "conv_nv_t1_a"
+      },
+      {
+        "id": "conv_nv_t2",
+        "characterLine": "Elder Thomas asks how you are doing today. How do you introduce yourself?",
+        "options": [
+          {
+            "id": "conv_nv_t2_a",
+            "nativeText": "Shí éí ... yinishyé",
+            "isCorrect": true,
+            "characterReaction": "Elder Thomas beams. \"Wonderful! It is important to share your name when meeting someone.\""
+          },
+          {
+            "id": "conv_nv_t2_b",
+            "nativeText": "Aoo'",
+            "isCorrect": false,
+            "characterReaction": "Just \"yes\" does not quite answer the question. Elder Thomas gently repeats: tell me who you are."
+          },
+          {
+            "id": "conv_nv_t2_c",
+            "nativeText": "Nizhóní",
+            "isCorrect": false,
+            "characterReaction": "\"Beautiful\" is kind, but Elder Thomas was hoping to learn your name. He encourages you to try again."
+          }
+        ],
+        "correctOptionID": "conv_nv_t2_a"
+      },
+      {
+        "id": "conv_nv_t3",
+        "characterLine": "Elder Thomas shares a story about the land. You want to show you understand. What do you say?",
+        "options": [
+          {
+            "id": "conv_nv_t3_a",
+            "nativeText": "Yá'át'ééh, shił bééhózin",
+            "isCorrect": true,
+            "characterReaction": "Elder Thomas looks pleased. \"Good — understanding is the first step to preserving what matters.\""
+          },
+          {
+            "id": "conv_nv_t3_b",
+            "nativeText": "T'áá shoodí",
+            "isCorrect": false,
+            "characterReaction": "\"Please\" is polite, but Elder Thomas was looking for you to confirm understanding. He repeats the key part."
+          },
+          {
+            "id": "conv_nv_t3_c",
+            "nativeText": "Ahéhee'",
+            "isCorrect": false,
+            "characterReaction": "Gratitude is always welcome, but the moment calls for showing comprehension. Elder Thomas hints: do you understand?"
+          }
+        ],
+        "correctOptionID": "conv_nv_t3_a"
+      },
+      {
+        "id": "conv_nv_t4",
+        "characterLine": "The event is ending. How do you close respectfully and thank Elder Thomas?",
+        "options": [
+          {
+            "id": "conv_nv_t4_a",
+            "nativeText": "Hágoónee', ahéhee'",
+            "isCorrect": true,
+            "characterReaction": "Elder Thomas smiles broadly. \"Hágoónee'! Come back any time. Your respect for the language is a gift.\""
+          },
+          {
+            "id": "conv_nv_t4_b",
+            "nativeText": "Yá'át'ééh abiní",
+            "isCorrect": false,
+            "characterReaction": "That is a morning greeting — not quite right for saying goodbye. Elder Thomas waits for a proper farewell."
+          },
+          {
+            "id": "conv_nv_t4_c",
+            "nativeText": "Aoo'",
+            "isCorrect": false,
+            "characterReaction": "A simple \"yes\" does not close the conversation. Elder Thomas gently prompts: how do you say goodbye with thanks?"
+          }
+        ],
+        "correctOptionID": "conv_nv_t4_a"
+      }
+    ]
+  },
+  {
+    "id": "conv_quechua_market",
+    "languageID": "quechua",
+    "scenarioTitle": "Community Workshop",
+    "scenarioContext": "You join a community coding workshop in the Andes. Mentor Rosa greets your group as you arrive.",
+    "characterName": "Mentor Rosa",
+    "characterIcon": "person.crop.circle.fill",
+    "turns": [
+      {
+        "id": "conv_qu_t1",
+        "characterLine": "Mentor Rosa welcomes the group. How do you greet her to start the day?",
+        "options": [
+          {
+            "id": "conv_qu_t1_a",
+            "nativeText": "Allin p'unchay",
+            "isCorrect": true,
+            "characterReaction": "Mentor Rosa smiles. \"Allin p'unchay! Welcome to today's workshop. I am glad you are here.\""
+          },
+          {
+            "id": "conv_qu_t1_b",
+            "nativeText": "Tupananchiskama",
+            "isCorrect": false,
+            "characterReaction": "That is a farewell — you just arrived! Mentor Rosa laughs kindly and waits for a proper greeting."
+          },
+          {
+            "id": "conv_qu_t1_c",
+            "nativeText": "Mana",
+            "isCorrect": false,
+            "characterReaction": "\"No\" is not the warmest start. Mentor Rosa raises an eyebrow playfully and gives you another chance."
+          }
+        ],
+        "correctOptionID": "conv_qu_t1_a"
+      },
+      {
+        "id": "conv_qu_t2",
+        "characterLine": "Mentor Rosa asks the group to introduce themselves. She turns to you: what is your name?",
+        "options": [
+          {
+            "id": "conv_qu_t2_a",
+            "nativeText": "Ñuqaqa ... kani",
+            "isCorrect": true,
+            "characterReaction": "Mentor Rosa nods approvingly. \"Wonderful introduction! Now everyone knows who you are.\""
+          },
+          {
+            "id": "conv_qu_t2_b",
+            "nativeText": "Imataq sutiyki?",
+            "isCorrect": false,
+            "characterReaction": "You asked her name back — charming, but she already introduced herself. She gently redirects: tell us yours."
+          },
+          {
+            "id": "conv_qu_t2_c",
+            "nativeText": "Ari",
+            "isCorrect": false,
+            "characterReaction": "Just \"yes\" does not answer the question. Mentor Rosa smiles and asks once more: who are you?"
+          }
+        ],
+        "correctOptionID": "conv_qu_t2_a"
+      },
+      {
+        "id": "conv_qu_t3",
+        "characterLine": "You get stuck on a coding problem. How do you ask Mentor Rosa for help?",
+        "options": [
+          {
+            "id": "conv_qu_t3_a",
+            "nativeText": "Yanapaway",
+            "isCorrect": true,
+            "characterReaction": "Mentor Rosa comes over immediately. \"Of course! Asking for help is a strength, not a weakness.\""
+          },
+          {
+            "id": "conv_qu_t3_b",
+            "nativeText": "Allinllam kani",
+            "isCorrect": false,
+            "characterReaction": "Saying \"I am well\" when stuck is brave but not helpful. Mentor Rosa senses you need support and waits."
+          },
+          {
+            "id": "conv_qu_t3_c",
+            "nativeText": "Sulpayki",
+            "isCorrect": false,
+            "characterReaction": "Thanking her before asking is sweet, but she is not sure what you need. She prompts: do you need help?"
+          }
+        ],
+        "correctOptionID": "conv_qu_t3_a"
+      },
+      {
+        "id": "conv_qu_t4",
+        "characterLine": "The workshop is wrapping up. How do you say goodbye to Mentor Rosa?",
+        "options": [
+          {
+            "id": "conv_qu_t4_a",
+            "nativeText": "Tupananchiskama",
+            "isCorrect": true,
+            "characterReaction": "Mentor Rosa waves warmly. \"Tupananchiskama — until we meet again! Keep learning and keep coding.\""
+          },
+          {
+            "id": "conv_qu_t4_b",
+            "nativeText": "Allin p'unchay",
+            "isCorrect": false,
+            "characterReaction": "That is a greeting, not a farewell. Mentor Rosa hints: we are leaving, not arriving."
+          },
+          {
+            "id": "conv_qu_t4_c",
+            "nativeText": "Pampachaway",
+            "isCorrect": false,
+            "characterReaction": "\"Excuse me\" is polite but not quite a goodbye. Mentor Rosa encourages you: how do you say until next time?"
+          }
+        ],
+        "correctOptionID": "conv_qu_t4_a"
+      }
+    ]
+  }
+]

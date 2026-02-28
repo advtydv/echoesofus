@@ -158,6 +158,8 @@ struct LearnView: View {
                         Label("Play pronunciation", systemImage: "speaker.wave.2.fill")
                     }
                     .buttonStyle(SecondaryActionButton(highContrast: appState.learnerProfile.highContrast))
+                    .accessibilityLabel("Play pronunciation audio for \(phrase.nativeText)")
+                    .accessibilityHint("Plays native clip or helper narration")
 
                     Text("Audio source: \(appState.lastAudioPlaybackLabel)")
                         .font(.footnote)
@@ -268,6 +270,8 @@ struct LearnView: View {
                                         Label("Play audio", systemImage: "speaker.wave.2.fill")
                                     }
                                     .buttonStyle(SecondaryActionButton(highContrast: appState.learnerProfile.highContrast))
+                                    .accessibilityLabel("Play audio for \(phrase.nativeText)")
+                                    .accessibilityHint("Plays native clip or helper narration")
                                 }
                                 .echoCard(highContrast: appState.learnerProfile.highContrast)
                             }
@@ -292,12 +296,16 @@ struct LearnView: View {
             }
             .buttonStyle(SecondaryActionButton(highContrast: appState.learnerProfile.highContrast))
             .disabled(appState.phraseIndex == 0)
+            .accessibilityLabel("Previous phrase")
+            .accessibilityHint("Go to the previous phrase card")
 
             Button("Next") {
                 appState.nextPhrase()
             }
             .buttonStyle(SecondaryActionButton(highContrast: appState.learnerProfile.highContrast))
             .disabled(isAtLastPhrase)
+            .accessibilityLabel("Next phrase")
+            .accessibilityHint("Go to the next phrase card")
         }
     }
 

@@ -19,7 +19,7 @@ extension RepositoryError: LocalizedError {
     }
 }
 
-struct LocalLanguageRepository: LanguageRepository, FairnessConfigRepository {
+struct LocalLanguageRepository: LanguageRepository, FairnessConfigRepository, ConversationRepository {
     private let decoder = JSONDecoder()
 
     func loadLanguagePacks() throws -> [LanguagePack] {
@@ -62,23 +62,29 @@ struct LocalLanguageRepository: LanguageRepository, FairnessConfigRepository {
         try decode("fairness_config")
     }
 
+    func loadConversations() throws -> [Conversation] {
+        let conversations: [Conversation] = try decode("conversations")
+        guard !conversations.isEmpty else {
+            throw RepositoryError.emptyDataset("conversations.json")
+        }
+        guard conversations.allSatisfy({ conv in
+            !conv.turns.isEmpty &&
+            conv.turns.allSatisfy { turn in
+                !turn.characterLine.isEmpty &&
+                turn.options.count >= 2 &&
+                turn.options.contains(where: { $0.id == turn.correctOptionID })
+            }
+        }) else {
+            throw RepositoryError.invalidDataset("Every conversation must include turns with valid options and a matching correct option.")
+        }
+        return conversations
+    }
+
     private func decode<T: Decodable>(_ resourceName: String) throws -> T {
-        guard let url = resourceURL(named: resourceName) else {
+        guard let url = BundleResourceFinder.url(forResource: resourceName, withExtension: "json") else {
             throw RepositoryError.missingResource("\(resourceName).json")
         }
         let data = try Data(contentsOf: url)
         return try decoder.decode(T.self, from: data)
     }
-
-    private func resourceURL(named name: String) -> URL? {
-        let bundles = [Bundle.main, Bundle(for: BundleLocator.self)] + Bundle.allBundles + Bundle.allFrameworks
-        for bundle in bundles {
-            if let url = bundle.url(forResource: name, withExtension: "json") {
-                return url
-            }
-        }
-        return nil
-    }
 }
-
-private final class BundleLocator {}

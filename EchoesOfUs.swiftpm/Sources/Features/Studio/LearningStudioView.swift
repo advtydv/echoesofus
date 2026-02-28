@@ -77,6 +77,8 @@ struct LearningStudioView: View {
                                                     Label("Play audio", systemImage: "speaker.wave.2.fill")
                                                 }
                                                 .buttonStyle(SecondaryActionButton(highContrast: appState.learnerProfile.highContrast))
+                                                .accessibilityLabel("Play audio for \(phrase.nativeText)")
+                                                .accessibilityHint("Plays native clip or helper narration")
 
                                                 ConfidenceMeter(
                                                     confidence: appState.confidence(for: phrase.id),

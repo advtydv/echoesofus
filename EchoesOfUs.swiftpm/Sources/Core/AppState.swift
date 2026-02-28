@@ -49,7 +49,16 @@ final class AppState: ObservableObject {
     @Published private(set) var audioClipPlayCount: Int = 0
     @Published private(set) var lastAudioPlaybackLabel: String = "No audio played yet"
 
-    private let repository: any (LanguageRepository & FairnessConfigRepository)
+    @Published private(set) var conversations: [Conversation] = []
+    @Published var activeConversationIndex: Int = 0
+    @Published var conversationTurnIndex: Int = 0
+    @Published var conversationSelectedOptionID: String?
+    @Published private(set) var conversationTurnResults: [String: Bool] = [:]
+    @Published private(set) var isConversationComplete: Bool = false
+    @Published private(set) var conversationCorrectCount: Int = 0
+    @Published private(set) var conversationReaction: String?
+
+    private let repository: any (LanguageRepository & FairnessConfigRepository & ConversationRepository)
     private let adaptationEngine: any AdaptationEngine
     private let audioService: any AudioPlaybackServicing
 
@@ -58,7 +67,7 @@ final class AppState: ObservableObject {
     private var masteryBaselineConfidence: Double = 0.35
 
     init(
-        repository: any (LanguageRepository & FairnessConfigRepository) = LocalLanguageRepository(),
+        repository: any (LanguageRepository & FairnessConfigRepository & ConversationRepository) = LocalLanguageRepository(),
         adaptationEngine: any AdaptationEngine = SessionAdaptationEngine(),
         audioService: any AudioPlaybackServicing = LocalAudioPlaybackService()
     ) {
@@ -216,6 +225,10 @@ final class AppState: ObservableObject {
 
         if target == .fairness {
             contributionAmount = 40
+        }
+
+        if target == .conversation {
+            startConversation()
         }
 
         completedSteps = Set(GuidedStep.allCases.filter { $0.rawValue < target.rawValue })
@@ -479,6 +492,72 @@ final class AppState: ObservableObject {
         startGuidedJourney()
     }
 
+    var currentConversation: Conversation? {
+        guard conversations.indices.contains(activeConversationIndex) else { return nil }
+        return conversations[activeConversationIndex]
+    }
+
+    var currentConversationTurn: ConversationTurn? {
+        guard let conv = currentConversation else { return nil }
+        guard conv.turns.indices.contains(conversationTurnIndex) else { return nil }
+        return conv.turns[conversationTurnIndex]
+    }
+
+    var conversationFluencyScore: Double {
+        guard let conv = currentConversation, !conv.turns.isEmpty else { return 0 }
+        return Double(conversationCorrectCount) / Double(conv.turns.count)
+    }
+
+    var conversationProgressLabel: String {
+        guard let conv = currentConversation else { return "0 / 0" }
+        return "\(min(conversationTurnIndex + 1, conv.turns.count)) / \(conv.turns.count)"
+    }
+
+    func startConversation() {
+        let languageConversations = conversations.filter { $0.languageID == activeLanguageID }
+        if let first = languageConversations.first,
+           let idx = conversations.firstIndex(where: { $0.id == first.id }) {
+            activeConversationIndex = idx
+        } else {
+            activeConversationIndex = 0
+        }
+        conversationTurnIndex = 0
+        conversationSelectedOptionID = nil
+        conversationTurnResults = [:]
+        isConversationComplete = false
+        conversationCorrectCount = 0
+        conversationReaction = nil
+    }
+
+    func submitConversationOption(_ optionID: String) {
+        guard let turn = currentConversationTurn else { return }
+        guard conversationSelectedOptionID == nil else { return }
+
+        conversationSelectedOptionID = optionID
+        let isCorrect = optionID == turn.correctOptionID
+
+        conversationTurnResults[turn.id] = isCorrect
+        if isCorrect {
+            conversationCorrectCount += 1
+        }
+
+        if let option = turn.options.first(where: { $0.id == optionID }) {
+            conversationReaction = option.characterReaction
+        }
+    }
+
+    func advanceConversationTurn() {
+        guard let conv = currentConversation else { return }
+        conversationSelectedOptionID = nil
+        conversationReaction = nil
+
+        if conversationTurnIndex < conv.turns.count - 1 {
+            conversationTurnIndex += 1
+        } else {
+            isConversationComplete = true
+        }
+    }
+
     private func moveToStep(_ target: GuidedStep) {
         step = target
         visitedSteps.insert(target)
@@ -486,6 +565,10 @@ final class AppState: ObservableObject {
 
         if target == .mastery && (currentSprintPrompts.isEmpty || isSprintSubmitted) {
             startMasterySprint()
+        }
+
+        if target == .conversation {
+            startConversation()
         }
 
         if target == .learn && guidedMode == .judged {
@@ -527,6 +610,14 @@ final class AppState: ObservableObject {
         audioClipPlayCount = 0
         lastAudioPlaybackLabel = "No audio played yet"
         audioService.stop()
+
+        activeConversationIndex = 0
+        conversationTurnIndex = 0
+        conversationSelectedOptionID = nil
+        conversationTurnResults = [:]
+        isConversationComplete = false
+        conversationCorrectCount = 0
+        conversationReaction = nil
 
         seedMasteryRecords(resetExisting: true)
     }
@@ -662,6 +753,7 @@ final class AppState: ObservableObject {
             languagePacks = try repository.loadLanguagePacks()
             missions = try repository.loadMissions()
             fairnessConfig = try repository.loadFairnessConfig()
+            conversations = (try? repository.loadConversations()) ?? []
             activeLanguageID = languagePacks.first?.id ?? ""
 
             loadIssueMessage = nil
@@ -672,6 +764,7 @@ final class AppState: ObservableObject {
             languagePacks = fallback.languagePacks
             missions = fallback.missions
             fairnessConfig = fallback.fairness
+            conversations = fallback.conversations
             activeLanguageID = fallback.languagePacks.first?.id ?? ""
 
             loadIssueMessage = "Live content could not be loaded. Showing built-in fallback content instead."
@@ -683,7 +776,8 @@ final class AppState: ObservableObject {
     private static let fallbackContent: (
         languagePacks: [LanguagePack],
         missions: [Mission],
-        fairness: FairnessConfig
+        fairness: FairnessConfig,
+        conversations: [Conversation]
     ) = (
         languagePacks: [
             LanguagePack(
@@ -716,7 +810,28 @@ final class AppState: ObservableObject {
                 hint: "Pick the greeting phrase used to welcome someone."
             )
         ],
-        fairness: .default
+        fairness: .default,
+        conversations: [
+            Conversation(
+                id: "fallback_conv",
+                languageID: "navajo",
+                scenarioTitle: "Quick Greeting",
+                scenarioContext: "A classmate approaches you in the hallway.",
+                characterName: "Classmate",
+                characterIcon: "person.crop.circle.fill",
+                turns: [
+                    ConversationTurn(
+                        id: "fb_t1",
+                        characterLine: "Someone walks up to you. How do you greet them?",
+                        options: [
+                            ConversationOption(id: "fb_t1_a", nativeText: "Yá'át'ééh", isCorrect: true, characterReaction: "They smile and greet you back warmly."),
+                            ConversationOption(id: "fb_t1_b", nativeText: "Hágoónee'", isCorrect: false, characterReaction: "That is a farewell. They look confused but wait for you to try again.")
+                        ],
+                        correctOptionID: "fb_t1_a"
+                    )
+                ]
+            )
+        ]
     )
 }
 

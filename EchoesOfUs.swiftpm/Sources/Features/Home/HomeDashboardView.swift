@@ -46,6 +46,7 @@ struct HomeDashboardView: View {
                         ) {
                             appState.startGuidedJourney()
                         }
+                        .staggeredEntrance(index: 0, focusMode: appState.learnerProfile.focusMode)
 
                         DashboardActionCard(
                             title: "Phrase Library",
@@ -56,6 +57,7 @@ struct HomeDashboardView: View {
                             appState.learnMode = .library
                             appState.openQuickAccess(step: .learn)
                         }
+                        .staggeredEntrance(index: 1, focusMode: appState.learnerProfile.focusMode)
 
                         DashboardActionCard(
                             title: "Mastery Practice",
@@ -65,6 +67,7 @@ struct HomeDashboardView: View {
                         ) {
                             appState.openQuickAccess(step: .mastery)
                         }
+                        .staggeredEntrance(index: 2, focusMode: appState.learnerProfile.focusMode)
 
                         DashboardActionCard(
                             title: "Mission Scenarios",
@@ -74,6 +77,17 @@ struct HomeDashboardView: View {
                         ) {
                             appState.openQuickAccess(step: .mission)
                         }
+                        .staggeredEntrance(index: 3, focusMode: appState.learnerProfile.focusMode)
+
+                        DashboardActionCard(
+                            title: "Echo Chamber",
+                            subtitle: "Practice phrases in a realistic conversation with characters.",
+                            systemImage: "bubble.left.and.bubble.right",
+                            highContrast: appState.learnerProfile.highContrast
+                        ) {
+                            appState.openQuickAccess(step: .conversation)
+                        }
+                        .staggeredEntrance(index: 4, focusMode: appState.learnerProfile.focusMode)
 
                         DashboardActionCard(
                             title: "AI Fairness Lab",
@@ -83,6 +97,7 @@ struct HomeDashboardView: View {
                         ) {
                             appState.openQuickAccess(step: .fairness)
                         }
+                        .staggeredEntrance(index: 5, focusMode: appState.learnerProfile.focusMode)
                     }
 
                     VStack(alignment: .leading, spacing: 8) {
