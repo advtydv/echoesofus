@@ -54,13 +54,8 @@ struct MissionView: View {
             }
             .buttonStyle(SecondaryActionButton(highContrast: appState.learnerProfile.highContrast))
             .accessibilityLabel("Play scenario audio")
-            .accessibilityHint("Plays audio for the mission prompt")
 
-            Text("Audio source: \(appState.lastAudioPlaybackLabel)")
-                .font(.footnote)
-                .foregroundStyle(palette.cardSubtext)
-
-            Text("Use what you practiced in mastery sprint: meaning + respectful context.")
+            Text("Choose the most respectful response.")
                 .font(.footnote)
                 .foregroundStyle(palette.cardSubtext)
         }

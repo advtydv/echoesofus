@@ -84,17 +84,11 @@ final class LocalAudioPlaybackService: NSObject, AudioPlaybackServicing, AudioMa
         switch cue {
         case .phrase:
             guard let phrase else { return missionText ?? "" }
-            return "Helper narration. Phonetic: \(phrase.phonetic). Meaning: \(phrase.englishMeaning)."
+            return phrase.nativeText
         case .missionPrompt:
-            if let missionText, !missionText.isEmpty {
-                return "Helper narration. Scenario prompt: \(missionText)"
-            }
-            return "Helper narration for mission prompt."
+            return missionText ?? ""
         case .missionOption:
-            if let missionText, !missionText.isEmpty {
-                return "Helper narration. Option: \(missionText)"
-            }
-            return "Helper narration for mission option."
+            return missionText ?? ""
         }
     }
 

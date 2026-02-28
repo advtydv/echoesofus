@@ -92,10 +92,6 @@ struct LearningStudioView: View {
                                 }
                             }
 
-                            Text("Last audio source: \(appState.lastAudioPlaybackLabel)")
-                                .font(.footnote)
-                                .foregroundStyle(palette.cardSubtext)
-                                .echoCard(highContrast: appState.learnerProfile.highContrast)
                         }
                     }
                     .padding(16)

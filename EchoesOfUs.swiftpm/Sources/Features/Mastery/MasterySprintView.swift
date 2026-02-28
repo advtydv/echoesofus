@@ -76,11 +76,6 @@ struct MasterySprintView: View {
                         }
                         .buttonStyle(SecondaryActionButton(highContrast: appState.learnerProfile.highContrast))
                         .accessibilityLabel("Play audio for this phrase")
-                        .accessibilityHint("Plays native clip or helper narration")
-
-                        Text("Audio source: \(appState.lastAudioPlaybackLabel)")
-                            .font(.footnote)
-                            .foregroundStyle(palette.cardSubtext)
                     }
 
                     DisclosureGroup(isExpanded: $showPronunciationSupport) {
