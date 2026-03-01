@@ -15,7 +15,6 @@ final class AppState: ObservableObject {
 
     @Published private(set) var languagePacks: [LanguagePack] = []
     @Published private(set) var missions: [Mission] = []
-    @Published private(set) var fairnessConfig: FairnessConfig = .default
 
     @Published var activeLanguageID: String = ""
     @Published var phraseIndex: Int = 0
@@ -25,7 +24,6 @@ final class AppState: ObservableObject {
     @Published var selectedMissionOption: String?
     @Published var missionResult: MissionResult?
 
-    @Published var contributionAmount: Double = 40
     @Published private(set) var loadIssueMessage: String?
     @Published private(set) var isUsingFallbackData: Bool = false
 
@@ -58,7 +56,7 @@ final class AppState: ObservableObject {
     @Published private(set) var conversationCorrectCount: Int = 0
     @Published private(set) var conversationReaction: String?
 
-    private let repository: any (LanguageRepository & FairnessConfigRepository & ConversationRepository)
+    private let repository: any (LanguageRepository & ConversationRepository)
     private let adaptationEngine: any AdaptationEngine
     private let audioService: any AudioPlaybackServicing
 
@@ -67,7 +65,7 @@ final class AppState: ObservableObject {
     private var masteryBaselineConfidence: Double = 0.35
 
     init(
-        repository: any (LanguageRepository & FairnessConfigRepository & ConversationRepository) = LocalLanguageRepository(),
+        repository: any (LanguageRepository & ConversationRepository) = LocalLanguageRepository(),
         adaptationEngine: any AdaptationEngine = SessionAdaptationEngine(),
         audioService: any AudioPlaybackServicing = LocalAudioPlaybackService()
     ) {
@@ -147,20 +145,6 @@ final class AppState: ObservableObject {
         Int(Date().timeIntervalSince(enteredStepAt[step] ?? sessionStart))
     }
 
-    var lowResourceScore: Double {
-        min(
-            fairnessConfig.lowResourceCap,
-            fairnessConfig.lowResourceBase + (contributionAmount * fairnessConfig.lowResourceSlope)
-        )
-    }
-
-    var highResourceScore: Double {
-        min(
-            fairnessConfig.highResourceCap,
-            fairnessConfig.highResourceBase + (contributionAmount * fairnessConfig.highResourceSlope)
-        )
-    }
-
     var recommendedDifficulty: Int {
         let base = currentPhrase?.difficulty ?? 2
         return adaptationEngine.recommendedNextDifficulty(current: base, streak: perfectMissions)
@@ -221,10 +205,6 @@ final class AppState: ObservableObject {
         if target == .learn {
             phraseIndex = 0
             revealContextNote = false
-        }
-
-        if target == .fairness {
-            contributionAmount = 40
         }
 
         if target == .conversation {
@@ -586,7 +566,6 @@ final class AppState: ObservableObject {
         selectedMissionOption = nil
         missionResult = nil
 
-        contributionAmount = 40
         mistakes = 0
         hintsUsed = 0
         completedMissions = 0
@@ -752,7 +731,6 @@ final class AppState: ObservableObject {
         do {
             languagePacks = try repository.loadLanguagePacks()
             missions = try repository.loadMissions()
-            fairnessConfig = try repository.loadFairnessConfig()
             conversations = (try? repository.loadConversations()) ?? []
             activeLanguageID = languagePacks.first?.id ?? ""
 
@@ -763,7 +741,6 @@ final class AppState: ObservableObject {
             let fallback = Self.fallbackContent
             languagePacks = fallback.languagePacks
             missions = fallback.missions
-            fairnessConfig = fallback.fairness
             conversations = fallback.conversations
             activeLanguageID = fallback.languagePacks.first?.id ?? ""
 
@@ -776,7 +753,6 @@ final class AppState: ObservableObject {
     private static let fallbackContent: (
         languagePacks: [LanguagePack],
         missions: [Mission],
-        fairness: FairnessConfig,
         conversations: [Conversation]
     ) = (
         languagePacks: [
@@ -810,7 +786,6 @@ final class AppState: ObservableObject {
                 hint: "Pick the greeting phrase used to welcome someone."
             )
         ],
-        fairness: .default,
         conversations: [
             Conversation(
                 id: "fallback_conv",

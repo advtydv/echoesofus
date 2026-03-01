@@ -162,7 +162,7 @@ struct ConversationSimView: View {
                 )
             }
 
-            Button("Continue to AI Fairness Lab") {
+            Button("Continue to reflection") {
                 appState.advanceStep()
             }
             .buttonStyle(PrimaryActionButton(highContrast: appState.learnerProfile.highContrast))

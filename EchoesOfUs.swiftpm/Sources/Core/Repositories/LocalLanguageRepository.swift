@@ -19,7 +19,7 @@ extension RepositoryError: LocalizedError {
     }
 }
 
-struct LocalLanguageRepository: LanguageRepository, FairnessConfigRepository, ConversationRepository {
+struct LocalLanguageRepository: LanguageRepository, ConversationRepository {
     private let decoder = JSONDecoder()
 
     func loadLanguagePacks() throws -> [LanguagePack] {
@@ -56,10 +56,6 @@ struct LocalLanguageRepository: LanguageRepository, FairnessConfigRepository, Co
             throw RepositoryError.invalidDataset("Every mission must include a prompt, valid options, and a matching correct answer.")
         }
         return missions
-    }
-
-    func loadFairnessConfig() throws -> FairnessConfig {
-        try decode("fairness_config")
     }
 
     func loadConversations() throws -> [Conversation] {

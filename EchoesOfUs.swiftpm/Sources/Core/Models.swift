@@ -154,10 +154,6 @@ protocol AdaptationEngine {
     func recommendedNextDifficulty(current: Int, streak: Int) -> Int
 }
 
-protocol FairnessConfigRepository {
-    func loadFairnessConfig() throws -> FairnessConfig
-}
-
 protocol ConversationRepository {
     func loadConversations() throws -> [Conversation]
 }
@@ -186,24 +182,6 @@ struct ConversationOption: Codable, Identifiable {
     let characterReaction: String
 }
 
-struct FairnessConfig: Codable {
-    let lowResourceBase: Double
-    let lowResourceSlope: Double
-    let lowResourceCap: Double
-    let highResourceBase: Double
-    let highResourceSlope: Double
-    let highResourceCap: Double
-
-    static let `default` = FairnessConfig(
-        lowResourceBase: 54,
-        lowResourceSlope: 0.28,
-        lowResourceCap: 82,
-        highResourceBase: 92,
-        highResourceSlope: 0.05,
-        highResourceCap: 96
-    )
-}
-
 enum GuidedStep: Int, CaseIterable, Identifiable {
     case intro
     case setup
@@ -229,7 +207,7 @@ enum GuidedStep: Int, CaseIterable, Identifiable {
         case .conversation:
             return "Echo Chamber"
         case .fairness:
-            return "AI Fairness Lab"
+            return "Reflect"
         case .summary:
             return "Impact"
         }
