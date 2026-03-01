@@ -101,6 +101,7 @@ struct StageShell<Content: View>: View {
 
     var body: some View {
         let palette = appState.learnerProfile.palette
+        let isGuided = appState.guidedMode == .judged
         let isLastStep = appState.step == GuidedStep.allCases.last
 
         ScrollView(showsIndicators: false) {
@@ -128,7 +129,7 @@ struct StageShell<Content: View>: View {
 
                     Spacer()
 
-                    if !isLastStep {
+                    if isGuided && !isLastStep {
                         Button(action: { appState.advanceStep() }) {
                             HStack(spacing: 4) {
                                 Text("Skip")
@@ -158,11 +159,13 @@ struct StageShell<Content: View>: View {
                         .foregroundStyle(palette.cardSubtext)
                 }
 
-                StepRail(
-                    current: appState.step.rawValue + 1,
-                    total: GuidedStep.allCases.count,
-                    highContrast: appState.learnerProfile.highContrast
-                )
+                if isGuided {
+                    StepRail(
+                        current: appState.step.rawValue + 1,
+                        total: GuidedStep.allCases.count,
+                        highContrast: appState.learnerProfile.highContrast
+                    )
+                }
 
                 content
             }

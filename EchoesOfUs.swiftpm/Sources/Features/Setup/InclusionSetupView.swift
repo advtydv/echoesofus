@@ -8,8 +8,10 @@ struct InclusionSetupView: View {
         let palette = appState.learnerProfile.palette
 
         StageShell(
-            title: "Choose a Language",
-            subtitle: "Pick a language to begin learning."
+            title: appState.quickAccessTarget != nil ? "Choose a Language" : "Inclusion Setup",
+            subtitle: appState.quickAccessTarget != nil
+                ? "Pick a language, then jump straight in."
+                : "Tune the experience so learning stays accessible."
         ) {
             VStack(spacing: 12) {
                 languageSelector(palette: palette)
@@ -35,7 +37,12 @@ struct InclusionSetupView: View {
                 .buttonStyle(.plain)
 
                 Button("Start learning") {
-                    appState.advanceStep()
+                    if let target = appState.quickAccessTarget {
+                        appState.quickAccessTarget = nil
+                        appState.openQuickAccess(step: target)
+                    } else {
+                        appState.advanceStep()
+                    }
                 }
                 .buttonStyle(PrimaryActionButton(highContrast: appState.learnerProfile.highContrast))
                 .padding(.top, 4)

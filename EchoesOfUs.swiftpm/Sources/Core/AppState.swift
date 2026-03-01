@@ -5,6 +5,7 @@ import SwiftUI
 final class AppState: ObservableObject {
     @Published var route: AppRoute = .dashboard
     @Published var guidedMode: GuidedMode = .judged
+    @Published var quickAccessTarget: GuidedStep? = nil
 
     @Published var step: GuidedStep = .intro
     @Published private(set) var completedSteps: Set<GuidedStep> = []
@@ -190,6 +191,14 @@ final class AppState: ObservableObject {
         resetJourney(to: .intro)
     }
 
+    /// Land on the language/setup screen, then jump to `target` when the user taps "Start".
+    func prepareQuickAccess(step target: GuidedStep) {
+        quickAccessTarget = target
+        guidedMode = .quickAccess
+        route = .guided
+        resetJourney(to: .setup)
+    }
+
     func openQuickAccess(step target: GuidedStep) {
         guidedMode = .quickAccess
         route = .guided
@@ -222,15 +231,19 @@ final class AppState: ObservableObject {
 
     func goToDashboard() {
         audioService.stop()
+        quickAccessTarget = nil
         route = .dashboard
     }
 
     func goBackStep() {
+        guard guidedMode == .judged else {
+            goToDashboard()
+            return
+        }
         guard let previous = GuidedStep(rawValue: step.rawValue - 1) else {
             goToDashboard()
             return
         }
-
         moveToStep(previous)
     }
 
